@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2ff;
+      text-align: center;
+      padding: 40px 15px;
+    }
+    .card {
+      max-width: 450px;
+      margin: 30px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px #ccd2e0;
+    }
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    button {
+      background: #4338ca;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #result { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Student Performance System</h1>
+  <div class="card">
+    <h2>Calculate Student Result</h2>
+    <input id="name" placeholder="Student Name">
+    <input id="marks" type="number" min="0" max="100"
+           placeholder="Enter marks (0–100)">
+    <button onclick="calculate()">Calculate Result</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    function calculate() {
+      const name = document.getElementById('name').value.trim();
+      const marks = document.getElementById('marks').value;
+      const result = document.getElementById('result');
+
+      if (!name || marks === '' || Number(marks) < 0 ||
+          Number(marks) > 100) {
+        result.textContent = 'Enter a name and valid marks from 0 to 100.';
+        return;
+      }
+
+      const score = Number(marks);
+      const grade = score >= 90 ? 'A+' :
+                    score >= 80 ? 'A' :
+                    score >= 70 ? 'B' :
+                    score >= 60 ? 'C' :
+                    score >= 35 ? 'D' : 'F';
+
+      result.textContent =
+        name + ': ' + score + '/100 — Grade ' + grade;
+    }
+  </script>
+</body>
+</html>
